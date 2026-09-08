@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charu. — Full-Stack Developer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --bg:#0b0f19; --surface:rgba(19,27,46,.72); --surface2:rgba(15,23,42,.62);
+  --text:#f3f4f6; --muted:#94a3b8; --soft:#cbd5e1; --border:#1e293b;
+  --cyan:#06b6d4; --cyan2:#22d3ee; --purple:#7c3aed; --pink:#ec4899;
+  --green:#34d399; --max:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 10% 12%,rgba(6,182,212,.10),transparent 28%),
+ radial-gradient(circle at 86% 54%,rgba(124,58,237,.09),transparent 30%),
+ linear-gradient(180deg,#0b0f19,#0b0f19);
+ color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.5}
+body.light{--bg:#f7fafc;--surface:rgba(255,255,255,.82);--surface2:#fff;--text:#0f172a;--muted:#64748b;--soft:#334155;--border:#dbe3ee;background:linear-gradient(180deg,#f8fafc,#eef4f8)}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.container{width:min(100% - 64px,var(--max));margin:auto}
+.section{padding:96px 0;border-top:1px solid rgba(30,41,59,.4)}
+.section.alt{background:rgba(15,23,42,.38)}
+.light .section.alt{background:rgba(226,232,240,.42)}
+.glass{background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--border);box-shadow:0 20px 45px rgba(0,0,0,.10)}
+header{position:fixed;z-index:50;top:0;left:0;right:0;background:rgba(19,27,46,.76);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.light header{background:rgba(255,255,255,.82);border-bottom-color:#e2e8f0}
+.nav{height:80px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center;padding:4px}
+.logo{width:44px;height:44px;border-radius:12px;padding:2px;background:linear-gradient(45deg,var(--cyan),var(--purple),var(--pink));display:grid;place-items:center}
+.logo span{background:var(--bg);width:100%;height:100%;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:20px;background-clip:text;color:var(--cyan2)}
+.brand-title{font-size:20px;font-weight:900;letter-spacing:-.5px}.brand-title b{color:var(--cyan)}
+.brand-sub{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:700}
+.navlinks{display:flex;gap:28px;align-items:center}.navlinks a{font-size:14px;color:var(--soft);transition:.2s}.navlinks a:hover{color:var(--cyan2)}
+.actions{display:flex;gap:12px;align-items:center}
+.iconbtn{width:44px;height:44px;border:1px solid #334155;background:rgba(30,41,59,.6);border-radius:12px;color:var(--soft)}
+.primary{border:0;color:white;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:12px;font-weight:700}
+.header-cta{padding:12px 16px;font-size:12px;letter-spacing:.6px}
+.mobile-menu{display:none}
+.hero{min-height:736px;padding:176px 0 128px;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(32px);pointer-events:none}
+.hero:before{width:380px;height:280px;left:5%;top:8%;background:rgba(6,182,212,.13)}
+.hero:after{width:420px;height:320px;right:6%;bottom:4%;background:rgba(124,58,237,.13)}
+.hero-grid{display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:center;min-height:496px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;background:rgba(19,27,46,.7);border:1px solid rgba(6,182,212,.2);color:var(--cyan2);font-size:14px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.badge .availability{color:var(--muted);font-size:12px}.sep{color:var(--muted)}
+h1{font-size:60px;line-height:1;letter-spacing:-1.5px;margin:24px 0 12px;font-weight:900}
+.gradient{background:linear-gradient(127deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-size:20px;color:rgba(103,232,249,.9);font-weight:600;letter-spacing:.5px;margin:0 0 10px}
+.hero-copy{font-size:18px;line-height:28px;color:var(--muted);max-width:672px}
+.ctas{display:flex;gap:16px;align-items:center;padding:16px 0 20px}.cta{padding:14px 28px;border-radius:12px;font-size:16px}.secondary{padding:13px 28px;border:1px solid rgba(51,65,85,.8);background:rgba(19,27,46,.7);color:var(--soft)}
+.creed{border-left:2px solid rgba(34,211,238,.6);padding-left:14px;display:flex;gap:12px;font:14px/20px "Space Mono",monospace;color:var(--muted)}.creed b{color:#64748b;font-weight:400}
+.portrait-wrap{width:384px;height:384px;margin:auto;position:relative;display:grid;place-items:center}
+.ring{position:absolute;inset:0;border:2px dashed rgba(56,189,248,.3);border-radius:50%;animation:spin 18s linear infinite}.ring.two{inset:16px;border-color:rgba(168,85,247,.3);animation-direction:reverse;animation-duration:14s}
+.portrait{width:320px;height:320px;border-radius:50%;padding:8px;background:linear-gradient(45deg,var(--cyan),var(--purple),var(--pink));box-shadow:0 0 45px -10px rgba(6,182,212,.35),0 0 35px -10px rgba(139,92,246,.35)}
+.portrait img{width:100%;height:100%;object-fit:cover;border:4px solid #0f172a;border-radius:50%;display:block}
+.orbit{position:absolute;padding:7px 15px;border-radius:12px;background:rgba(19,27,46,.78);backdrop-filter:blur(10px);border:1px solid rgba(6,182,212,.3);font-size:12px;font-weight:700;color:#e2e8f0}.orbit.one{right:0;top:-12px}.orbit.two{left:0;bottom:-16px;border-color:rgba(139,92,246,.3)}.orbit.three{right:-32px;top:46%;border-color:rgba(236,72,153,.3)}.orbit.three span{color:#f472b6;font-family:"Space Mono"}
+.section-head{text-align:center;max-width:768px;margin:0 auto 64px}.eyebrow{display:inline-block;padding:4.5px 13px;border-radius:999px;font-size:12px;letter-spacing:1.2px;font-weight:800;color:var(--cyan2);background:rgba(8,51,68,.4);border:1px solid rgba(6,182,212,.2);text-transform:uppercase}
+.eyebrow.purple{color:#a78bfa;background:rgba(46,16,101,.4);border-color:rgba(139,92,246,.2)}.eyebrow.green{color:var(--green);background:rgba(2,44,34,.4);border-color:rgba(16,185,129,.2)}.eyebrow.pink{color:#f472b6;background:rgba(80,7,36,.4);border-color:rgba(236,72,153,.2)}
+h2{font-size:36px;line-height:40px;letter-spacing:-.9px;margin:10px 0 6px;font-weight:900}.section-head p{color:var(--muted);font-size:16px;margin:0;line-height:24px}
+.about-head p{font-size:18px;line-height:28px}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.card{padding:33px;border-radius:16px}.feature-icon{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;font-size:26px;margin-bottom:12px}.cyan-bg{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--cyan2)}.purple-bg{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);color:#a78bfa}.pink-bg{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);color:#f472b6}
+.card h3{font-size:20px;margin:0 0 8px}.card p{font-size:14px;color:var(--muted);line-height:22.75px;margin:0}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:64px}.metric{padding:25px;text-align:center;border-radius:16px}.metric strong{font-size:48px;line-height:48px;display:block;font-weight:900}.metric:nth-child(1) strong{background:linear-gradient(110deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;color:transparent}.metric:nth-child(2) strong{color:var(--cyan2)}.metric:nth-child(3) strong{color:#a78bfa}.metric:nth-child(4) strong{color:#f472b6}.metric span{display:block;color:var(--soft);font-weight:600;font-size:14px;margin-top:4px}.metric small{color:#64748b;font-size:11px}
+.milestones{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.milestone{padding:21px;border-radius:12px;background:rgba(15,23,42,.6);border:1px solid var(--border)}.milestone code{font:12px/16px "Space Mono";color:var(--cyan2)}.milestone:nth-child(2) code{color:#a78bfa}.milestone:nth-child(3) code{color:#f472b6}.milestone:nth-child(4) code{color:var(--green)}.milestone h4{margin:4px 0;color:var(--soft);font-size:16px}.milestone p{margin:0;color:var(--muted);font-size:12px;line-height:16px}
+.skills-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}.skill{padding:21px;text-align:center;border-radius:16px}.skill-icon{width:48px;height:48px;border-radius:12px;margin:auto;display:grid;place-items:center;font-size:16px;font-weight:800}.skill h4{margin:6px 0 0;font-size:14px}.skill p{margin:0;color:var(--muted);font-size:11px}.skill:nth-child(1) .skill-icon{color:#fb923c;background:rgba(249,115,22,.1)}.skill:nth-child(2) .skill-icon{color:#60a5fa;background:rgba(59,130,246,.1)}.skill:nth-child(3) .skill-icon{color:#facc15;background:rgba(234,179,8,.1)}.skill:nth-child(4) .skill-icon{color:#34d399;background:rgba(16,185,129,.1)}.skill:nth-child(5) .skill-icon{color:#f87171;background:rgba(239,68,68,.1)}.skill:nth-child(6) .skill-icon{color:#22d3ee;background:rgba(6,182,212,.1)}.skill:nth-child(7) .skill-icon{color:#818cf8;background:rgba(99,102,241,.1)}.skill:nth-child(8) .skill-icon{color:#38bdf8;background:rgba(56,189,248,.1)}.skill:nth-child(9) .skill-icon{color:#4ade80;background:rgba(34,197,94,.1)}.skill:nth-child(10) .skill-icon{color:#cbd5e1;background:rgba(100,116,139,.1)}.skill:nth-child(11) .skill-icon{color:#34d399;background:rgba(16,185,129,.1)}.skill:nth-child(12) .skill-icon{color:#f87171;background:rgba(248,113,113,.1)}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}.project{overflow:hidden;border-radius:16px}.project-img{height:215px;background:#020617;overflow:hidden}.project-img img{width:100%;height:100%;object-fit:cover;display:block}.project-body{padding:24px}.project-meta{display:flex;justify-content:space-between;color:#64748b;font-size:12px}.project-meta code{font-family:"Space Mono";color:var(--cyan2)}.project:nth-child(2) .project-meta code{color:#a78bfa}.project:nth-child(3) .project-meta code{color:#f472b6}.project h3{font-size:20px;margin:8px 0}.project p{font-size:14px;color:var(--muted);line-height:22.75px;margin:0}.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.tag{padding:3px 11px;border-radius:6px;font-size:11px;color:#67e8f9;background:rgba(8,51,68,.6);border:1px solid rgba(6,182,212,.2)}.project:nth-child(2) .tag{color:#c4b5fd;background:rgba(46,16,101,.6);border-color:rgba(139,92,246,.2)}.project:nth-child(3) .tag{color:#f9a8d4;background:rgba(80,7,36,.6);border-color:rgba(236,72,153,.2)}.project-actions{border-top:1px solid var(--border);margin-top:24px;padding-top:13px;display:flex;gap:12px}.project-actions a{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700}.view{background:var(--cyan);color:#fff}.project:nth-child(2) .view{background:var(--purple)}.project:nth-child(3) .view{background:#db2777}.github{border:1px solid #334155;color:var(--soft)}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}.service{padding:33px;border-radius:16px}.service-top{display:flex;gap:20px}.service-icon{width:56px;height:56px;flex:0 0 56px;border-radius:16px;display:grid;place-items:center;font-size:24px}.service h3{font-size:20px;margin:0 0 6px}.service p{font-size:14px;color:var(--muted);line-height:22.75px;margin:0}.service ul{list-style:none;padding:9px 0 0;margin:0}.service li{font-size:12px;color:var(--muted);margin:5px 0}.service li:before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;background:var(--cyan2);border-radius:2px;transform:rotate(45deg)}.service:nth-child(2) li:before{background:#a78bfa}.service:nth-child(3) li:before{background:#f472b6}.service:nth-child(4) li:before{background:#f59e0b}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}.testimonial{padding:33px;border-radius:16px}.quote{font-family:Georgia;font-size:36px;color:rgba(34,211,238,.4);line-height:36px}.testimonial:nth-child(2) .quote{color:rgba(167,139,250,.4)}.testimonial:nth-child(3) .quote{color:rgba(244,114,182,.4)}.quote-text{font-size:16px;font-style:italic;color:var(--soft);line-height:24px;margin:16px 0 24px}.person{border-top:1px solid var(--border);padding-top:17px;display:flex;gap:12px;align-items:center}.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:800;background:rgba(6,182,212,.2);border:1px solid rgba(6,182,212,.4);color:#67e8f9}.testimonial:nth-child(2) .avatar{background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.4);color:#c4b5fd}.testimonial:nth-child(3) .avatar{background:rgba(236,72,153,.2);border-color:rgba(236,72,153,.4);color:#f9a8d4}.person strong{font-size:14px}.person small{display:block;color:var(--muted);font-size:12px}
+.faq{max-width:896px;margin:auto}.faq .section-head{margin-bottom:64px}.faq-item{border-radius:12px;overflow:hidden;margin-bottom:16px}.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;background:transparent;border:0;color:var(--soft);padding:20px 24px;text-align:left;font-size:16px;font-weight:600}.faq-q span:last-child{font-size:20px;color:var(--muted);transition:.2s}.faq-a{max-height:0;overflow:hidden;color:var(--muted);font-size:14px;line-height:22px;padding:0 24px;transition:max-height .3s,padding .3s}.faq-item.open .faq-a{max-height:160px;padding:0 24px 20px}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+.contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}.contact-intro h2{text-align:left}.contact-intro>p{color:var(--muted);font-size:16px;line-height:26px}.contact-list{display:grid;gap:20px;margin-top:22px}.contact-row{display:flex;gap:16px;align-items:center}.contact-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center}.contact-row small{display:block;color:var(--muted);font-weight:700;font-size:12px}.contact-row span{font-size:16px;color:var(--soft);font-weight:500}
+.form-card{padding:41px;border-radius:16px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{display:grid;gap:8px;margin-bottom:20px}.field label{font-size:12px;color:var(--soft);letter-spacing:.6px;font-weight:700;text-transform:uppercase}.field input{width:100%;padding:14px 17px;border-radius:12px;border:1px solid #334155;background:rgba(15,23,42,.8);color:var(--soft);outline:none}.field input:focus{border-color:var(--cyan)}.submit{width:100%;padding:16px;border:0;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));color:#fff;font-size:14px;font-weight:700}.form-message{display:none;margin-top:12px;padding:10px;border-radius:10px;text-align:center;font-size:13px}.success{background:rgba(52,211,153,.12);color:#34d399}.error{background:rgba(244,63,94,.12);color:#fb7185}
+.final{padding:80px 0;background:linear-gradient(180deg,rgba(8,51,68,0),rgba(8,51,68,.2))}.final-box{padding:57px;border-radius:24px;text-align:center;border-color:rgba(6,182,212,.3);box-shadow:0 0 45px -10px rgba(6,182,212,.35),0 0 35px -10px rgba(139,92,246,.35)}.final h2{font-size:48px;line-height:48px}.final p{max-width:576px;margin:0 auto 16px;color:var(--muted);font-size:18px;line-height:28px}.final a{display:inline-block;padding:16px 32px}
+footer{padding:57px 0;background:rgba(19,27,46,.72);border-top:1px solid var(--border)}.footer-top{display:flex;justify-content:space-between;align-items:center;gap:30px}.footer-summary{max-width:448px}.footer-summary p{color:var(--muted);font-size:14px;line-height:20px}.socials{display:flex;gap:16px}.socials a{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--soft);font-size:13px}.footer-bottom{border-top:1px solid var(--border);margin-top:40px;padding-top:33px;display:flex;justify-content:space-between;color:#64748b;font-size:12px}
+.top{position:fixed;right:24px;bottom:20px;width:44px;height:44px;border:1px solid #334155;border-radius:12px;background:#0f172a;color:#fff;opacity:0;pointer-events:none;transition:.2s;z-index:40}.top.show{opacity:1;pointer-events:auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:1050px){.navlinks{display:none}.mobile-menu{display:block}.hero-grid{grid-template-columns:1fr}.hero-copy{max-width:100%}.portrait-wrap{margin:35px auto}.skills-grid{grid-template-columns:repeat(4,1fr)}.metrics,.milestones{grid-template-columns:repeat(2,1fr)}.projects,.cards3,.testimonials{grid-template-columns:1fr}.services{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.container{width:min(100% - 32px,var(--max))}.hero{padding:130px 0 80px}.hero-grid{min-height:auto}.portrait-wrap{transform:scale(.78);margin:-5px auto}.hero-copy{font-size:16px;line-height:25px}h1{font-size:42px}.tagline{font-size:17px}.creed{font-size:11px}.section{padding:70px 0}h2{font-size:30px}.cards3,.metrics,.milestones,.skills-grid,.services,.projects,.testimonials{grid-template-columns:1fr}.skills-grid{gap:12px}.skill{display:grid;grid-template-columns:48px 1fr;text-align:left;align-items:center;column-gap:12px}.skill p{grid-column:2}.form-row{grid-template-columns:1fr}.form-card{padding:24px}.footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}.nav .actions .header-cta{display:none}.orbit.three{right:-10px}.final-box{padding:35px 20px}.final h2{font-size:34px;line-height:40px}.final p{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <div class="logo"><span>C</span></div>
+      <div><div class="brand-title">Charu<b>.</b></div><div class="brand-sub">FULL-STACK DEV</div></div>
+    </a>
+    <nav class="navlinks">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="actions">
+      <button class="iconbtn" id="themeBtn" aria-label="Toggle theme">☀</button>
+      <a class="primary header-cta" href="#contact">HIRE CHARU</a>
+      <button class="iconbtn mobile-menu" id="mobileBtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+<div class="container hero-grid">
+  <div>
+    <div class="badge"><span class="dot"></span><span>Hello, I'm Charu 👋</span><span class="sep">|</span><span class="availability">Available for New Projects</span></div>
+    <h1>Turning Ideas Into<br><span class="gradient">Digital Experiences</span></h1>
+    <p class="tagline">Code with purpose. Design with feeling. Build with curiosity.</p>
+    <p class="hero-copy">I am a modern full-stack developer dedicated to creating intuitive, high-performance web applications. From pixel-perfect frontends to resilient backend architectures, I bridge the gap between creative visual design and scalable engineering.</p>
+    <div class="ctas"><a class="primary cta" href="#projects">Explore My Work →</a><a class="secondary cta" href="#contact">Let's Connect</a></div>
+    <div class="creed"><b>&lt;creed&gt;</b><span>Think it. Build it. Make it memorable.</span><b>&lt;/creed&gt;</b></div>
+  </div>
+  <div>
+    <div class="portrait-wrap">
+      <div class="ring"></div><div class="ring two"></div>
+      <div class="portrait"><img src="https://www.figma.com/api/mcp/asset/4296db08-121c-42da-aae5-9fb617e1fac3.png" alt="Charu"></div>
+      <div class="orbit one"><span style="color:#22d3ee">●</span> Full-Stack Dev</div>
+      <div class="orbit two">✨ Creative UI/UX</div>
+      <div class="orbit three"><span>&lt;/&gt;</span> Clean Code</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="container">
+  <div class="section-head about-head"><span class="eyebrow">THE DEVELOPER JOURNEY</span><h2>More Than Code</h2><p>I believe engineering is an art form rooted in human empathy. A great product is not merely about writing lines of syntax; it is about crafting accessible, memorable experiences that solve everyday challenges with grace and simplicity.</p></div>
+  <div class="cards3">
+    <article class="glass card"><div class="feature-icon cyan-bg">⌘</div><h3>Curious Mind</h3><p>Always dissecting emerging patterns, micro-interactions, and distributed cloud tools. Curiosity fuels my hunger to comprehend why things work and how they can be refined.</p></article>
+    <article class="glass card"><div class="feature-icon purple-bg">✦</div><h3>Creative Builder</h3><p>Design is more than aesthetics; it is communication. I enjoy designing fluid components, harmonic typography, and intuitive flows that delight users from the first click.</p></article>
+    <article class="glass card"><div class="feature-icon pink-bg">◇</div><h3>Problem Solver</h3><p>Whether debugging an asynchronous state race condition or architecting robust database schemas, I break multifaceted challenges into clear, manageable steps.</p></article>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="achievements">
+<div class="container">
+  <div class="metrics">
+    <div class="glass metric"><strong>10+</strong><span>Projects Built</span><small>Full-stack & UI Apps</small></div>
+    <div class="glass metric"><strong>5+</strong><span>Technologies Explored</span><small>Modern stacks & tools</small></div>
+    <div class="glass metric"><strong>20+</strong><span>Concepts Learned</span><small>Algorithms, state & APIs</small></div>
+    <div class="glass metric"><strong>100%</strong><span>Curiosity</span><small>Never-ending growth</small></div>
+  </div>
+  <div class="milestones">
+    <div class="milestone"><code>MILESTONE 01</code><h4>Projects Completed</h4><p>Delivered responsive frontends, server backends, and full database integrations.</p></div>
+    <div class="milestone"><code>MILESTONE 02</code><h4>Continuous Learning</h4><p>Regularly exploring documentation, new frameworks, and architectural clean standards.</p></div>
+    <div class="milestone"><code>MILESTONE 03</code><h4>Creative Experiments</h4><p>Prototyping dynamic animations, reactive state engines, and expressive modern UI kits.</p></div>
+    <div class="milestone"><code>MILESTONE 04</code><h4>Growing Every Day</h4><p>Committed to engineering excellence, testing, code readability, and collaborative value.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="skills">
+<div class="container">
+  <div class="section-head"><span class="eyebrow purple">TECHNICAL TOOLBOX</span><h2>Tools I Turn Into Ideas</h2><p>From markup to asynchronous microservices, here are the technologies I leverage daily.</p></div>
+  <div class="skills-grid">
+    <div class="glass skill"><div class="skill-icon">&lt;/&gt;</div><div><h4>HTML5</h4><p>Semantic & A11y</p></div></div>
+    <div class="glass skill"><div class="skill-icon">#</div><div><h4>CSS3 / Tailwind</h4><p>Flexbox & Grid</p></div></div>
+    <div class="glass skill"><div class="skill-icon">JS</div><div><h4>JavaScript</h4><p>ES6+ & Async</p></div></div>
+    <div class="glass skill"><div class="skill-icon">Py</div><div><h4>Python</h4><p>Backend & Logic</p></div></div>
+    <div class="glass skill"><div class="skill-icon">☕</div><div><h4>Java</h4><p>OOP & Systems</p></div></div>
+    <div class="glass skill"><div class="skill-icon">C</div><div><h4>C Language</h4><p>Data Structures</p></div></div>
+    <div class="glass skill"><div class="skill-icon">SQL</div><div><h4>SQL</h4><p>Relational DB</p></div></div>
+    <div class="glass skill"><div class="skill-icon">⚛</div><div><h4>React.js</h4><p>Hooks & SPA</p></div></div>
+    <div class="glass skill"><div class="skill-icon">⬡</div><div><h4>Node.js</h4><p>Runtime Engine</p></div></div>
+    <div class="glass skill"><div class="skill-icon">Ex</div><div><h4>Express.js</h4><p>RESTful APIs</p></div></div>
+    <div class="glass skill"><div class="skill-icon">🍃</div><div><h4>MongoDB</h4><p>NoSQL & Atlas</p></div></div>
+    <div class="glass skill"><div class="skill-icon">⌥</div><div><h4>Git & GitHub</h4><p>Version Control</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="projects">
+<div class="container">
+  <div class="section-head"><span class="eyebrow">FEATURED PORTFOLIO</span><h2>Things I've Built</h2><p>A curated selection of functional web applications and interface projects.</p></div>
+  <div class="projects">
+    <article class="glass project">
+      <div class="project-img"><img src="https://www.figma.com/api/mcp/asset/27408e09-a5fc-4c41-a2b7-4eb9332f592a.png" alt="BiteHub project"></div>
+      <div class="project-body"><div class="project-meta"><code>Full-Stack Application</code><span>Live Mockup</span></div><h3>BiteHub Food Delivery Platform</h3><p>A responsive food ordering web and mobile application featuring real-time menu browsing, filtering, customized checkout cart flow, and responsive dashboard.</p><div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Tailwind CSS</span></div><div class="project-actions"><a class="view" href="#contact">View Project →</a><a class="github" href="#contact">GitHub Code</a></div></div>
+    </article>
+    <article class="glass project">
+      <div class="project-img"><img src="https://www.figma.com/api/mcp/asset/a3f9bafb-c604-4508-996c-5ec7bfd238f8.png" alt="Pulse project"></div>
+      <div class="project-body"><div class="project-meta"><code>Social Architecture</code><span>Real-time Feed</span></div><h3>Pulse Microblogging Platform</h3><p>A distraction-free social platform featuring real-time conversational threads, instant posting, hashtag discovery feeds, and clean dark UI interactions.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Express.js</span><span class="tag">SQL</span><span class="tag">REST API</span></div><div class="project-actions"><a class="view" href="#contact">View Project →</a><a class="github" href="#contact">GitHub Code</a></div></div>
+    </article>
+    <article class="glass project">
+      <div class="project-img"><img src="https://www.figma.com/api/mcp/asset/e286271b-667c-4eca-92d2-b75c362a3820.png" alt="Aura project"></div>
+      <div class="project-body"><div class="project-meta"><code>Design System & UI</code><span>Interactive</span></div><h3>Aura Portfolio Showcase</h3><p>A high-end showcase website featuring fluid glassmorphic cards, dynamic gradient backgrounds, smooth responsive layouts, and modern accessibility standards.</p><div class="tags"><span class="tag">HTML5</span><span class="tag">Modern CSS</span><span class="tag">Tailwind</span><span class="tag">Vanilla JS</span></div><div class="project-actions"><a class="view" href="#contact">View Project →</a><a class="github" href="#contact">GitHub Code</a></div></div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="container">
+  <div class="section-head"><span class="eyebrow green">OFFERINGS</span><h2>What I Love Building</h2><p>Comprehensive development tailored to founders, modern companies, and creative ideas.</p></div>
+  <div class="services">
+    <article class="glass service"><div class="service-top"><div class="service-icon cyan-bg">⌘</div><div><h3>Web Development</h3><p>Building lightning-fast, mobile-responsive web applications optimized for search engines, accessibility, and high performance across every screen dimension.</p><ul><li>Responsive Single Page Applications</li><li>Modern JavaScript & React Ecosystem</li><li>Cross-Browser & Mobile Compatibility</li></ul></div></div></article>
+    <article class="glass service"><div class="service-top"><div class="service-icon purple-bg">✦</div><div><h3>UI/UX Design</h3><p>Transforming conceptual user journeys into elegant, functional digital wireframes and prototypes with intuitive layouts and intentional typography.</p><ul><li>Human-Centered Interface Architecture</li><li>Interactive Prototypes & Design Systems</li><li>Dark Mode & Micro-Interactions</li></ul></div></div></article>
+    <article class="glass service"><div class="service-top"><div class="service-icon pink-bg">◇</div><div><h3>Full-Stack Development</h3><p>Connecting front-facing customer interfaces with resilient backend APIs, authenticated routing, and relational or document database structures.</p><ul><li>Node.js, Express & RESTful APIs</li><li>MongoDB & SQL Database Schemas</li><li>Secure Authentication & Session Logic</li></ul></div></div></article>
+    <article class="glass service"><div class="service-top"><div class="service-icon" style="background:rgba(245,158,11,.1);color:#f59e0b">✺</div><div><h3>Creative Digital Experiences</h3><p>Elevating standard pages into engaging brand portfolios with fluid transitions, engaging micro-animations, and memorable visual personality.</p><ul><li>Custom CSS & Canvas Animations</li><li>Interactive Landing Pages</li><li>Modern Brand Storytelling</li></ul></div></div></article>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="testimonials">
+<div class="container">
+  <div class="section-head"><span class="eyebrow pink">COLLABORATIONS</span><h2>Words That Keep Me Building</h2><p>Feedback and reflections from peers and project teammates.</p></div>
+  <div class="testimonials">
+    <article class="glass testimonial"><div class="quote">“</div><div class="quote-text">Charu has an extraordinary instinct for balancing clean backend code with breathtaking frontend interactions. She always asks the right questions before writing code.</div><div class="person"><div class="avatar">AK</div><div><strong>Aarav K.</strong><small>Project Collaborator & Tech Lead</small></div></div></article>
+    <article class="glass testimonial"><div class="quote">“</div><div class="quote-text">Working with Charu on our web application was effortless. Her proactive communication and deep knowledge of modern UI patterns saved our sprint weeks of rework.</div><div class="person"><div class="avatar">SM</div><div><strong>Sneha M.</strong><small>Product Engineering Teammate</small></div></div></article>
+    <article class="glass testimonial"><div class="quote">“</div><div class="quote-text">Her curiosity is contagious. Charu took our vague requirements and returned an intuitive dashboard that everyone on the team loved immediately.</div><div class="person"><div class="avatar">RD</div><div><strong>Rohan D.</strong><small>Full-Stack Partner</small></div></div></article>
+  </div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="container faq">
+  <div class="section-head"><span class="eyebrow">COMMON INQUIRIES</span><h2>Questions? I've Got Answers</h2><p>Clear facts on my background, workflow, and engineering philosophy.</p></div>
+  <div>
+    <div class="glass faq-item"><button class="faq-q">What is your primary technology stack?<span>+</span></button><div class="faq-a">My core stack includes HTML, CSS, JavaScript, React, Node.js, Express, SQL and MongoDB, with Python, Java and C for broader engineering work.</div></div>
+    <div class="glass faq-item"><button class="faq-q">Are you open to freelance or full-time opportunities?<span>+</span></button><div class="faq-a">Yes. I am open to meaningful projects, internships, freelance collaborations and opportunities where I can build, learn and contribute.</div></div>
+    <div class="glass faq-item"><button class="faq-q">How do you handle UI design and responsive development?<span>+</span></button><div class="faq-a">I start from user goals and visual hierarchy, then build responsive layouts using clean CSS, reusable components, accessible interactions and careful testing across screen sizes.</div></div>
+    <div class="glass faq-item"><button class="faq-q">Can you assist with existing codebases and bug fixes?<span>+</span></button><div class="faq-a">Absolutely. I can trace issues, simplify confusing logic, improve UI behavior and work through backend or database problems step by step.</div></div>
+    <div class="glass faq-item"><button class="faq-q">What is your typical project delivery timeline?<span>+</span></button><div class="faq-a">It depends on scope. A focused landing page can move quickly, while a full-stack product takes longer for architecture, testing, integrations and refinement.</div></div>
+    <div class="glass faq-item"><button class="faq-q">What is the best way to contact you?<span>+</span></button><div class="faq-a">Use the contact form below with your name, email and phone number. I can then follow up directly.</div></div>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="contact">
+<div class="container contact-grid">
+  <div class="contact-intro">
+    <span class="eyebrow">GET IN TOUCH</span><h2>Have an Idea?<br>Let's Make It Real.</h2>
+    <p>Whether you have a question about full-stack architecture, want to collaborate on a new product, or just want to say hi, my inbox is open!</p>
+    <div class="contact-list">
+      <div class="contact-row"><div class="contact-icon cyan-bg">✉</div><div><small>EMAIL ME</small><span>charu.builds@gmail.com</span></div></div>
+      <div class="contact-row"><div class="contact-icon purple-bg">⌖</div><div><small>LOCATION</small><span>Global / Remote Available</span></div></div>
+      <div class="contact-row"><div class="contact-icon pink-bg">◷</div><div><small>RESPONSE TIME</small><span>Within 24 Hours</span></div></div>
+    </div>
+  </div>
+  <form class="glass form-card" id="contactForm">
+    <div class="form-row">
+      <div class="field"><label for="name">YOUR NAME *</label><input id="name" name="name" type="text" placeholder="e.g. Alex Rivera" required></div>
+      <div class="field"><label for="email">EMAIL ADDRESS *</label><input id="email" name="email" type="email" placeholder="e.g. alex@example.com" required></div>
+    </div>
+    <div class="field"><label for="phone">PHONE NUMBER</label><input id="phone" name="phone" type="tel" placeholder="e.g. +1 (555) 000-1234"></div>
+    <button class="submit" type="submit">Send Message &nbsp; →</button>
+    <div id="success" class="form-message success">Thanks! Your response has been sent.</div>
+    <div id="error" class="form-message error">Something went wrong. Please try again.</div>
+  </form>
+</div>
+</section>
+
+<section class="final">
+<div class="container"><div class="glass final-box">
+  <h2>Your Idea Is Waiting.</h2>
+  <p>Let's transform your vision into clean architecture and delightful user interfaces today.</p>
+  <a class="primary" href="#contact">Let's Build Something &nbsp;→</a>
+</div></div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-summary"><div class="brand-title">Charu<b>.</b></div><p>Full-stack developer building thoughtful digital web experiences with modern frameworks, empathetic design, and clean craftsmanship.</p></div>
+    <div class="socials"><a href="#" aria-label="GitHub">GH</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Instagram">◎</a><a href="mailto:charu.builds@gmail.com" aria-label="Email">✉</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Charu. All rights reserved.</span><span>Handcrafted with clean HTML, CSS & JavaScript</span></div>
+</div>
+</footer>
+<button class="top" id="topBtn" aria-label="Back to top">↑</button>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzI6L4CJZlCpS7Ege5abifNK82CpR_CcJ23cO98SrjraD0a_9sKH_2d7qCQ2jJk6oEWOg/exec";
+
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("charu-theme");
+if(savedTheme === "light") document.body.classList.add("light");
+themeBtn.textContent = document.body.classList.contains("light") ? "☾" : "☀";
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  const light = document.body.classList.contains("light");
+  localStorage.setItem("charu-theme", light ? "light" : "dark");
+  themeBtn.textContent = light ? "☾" : "☀";
+});
+
+document.querySelectorAll(".faq-q").forEach(btn => {
+  btn.addEventListener("click", () => btn.parentElement.classList.toggle("open"));
+});
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  if(!name || !email){
+    showError();
+    return;
+  }
+
+  const url = SCRIPT_URL + "?" + new URLSearchParams({name, email, phone});
+
+  fetch(url, { method: "GET", mode: "no-cors" })
+    .then(() => showSuccess())
+    .catch(() => showError());
+});
+
+function showSuccess(){
+  document.getElementById("success").style.display = "block";
+  document.getElementById("error").style.display = "none";
+  document.getElementById("contactForm").reset();
+}
+function showError(){
+  document.getElementById("error").style.display = "block";
+  document.getElementById("success").style.display = "none";
+}
+
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+  topBtn.classList.toggle("show", window.scrollY > 500);
+});
+topBtn.addEventListener("click", () => window.scrollTo({top:0,behavior:"smooth"}));
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", e => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:"smooth"});
+    }
+  });
+});
+</script>
+</body>
+</html>
