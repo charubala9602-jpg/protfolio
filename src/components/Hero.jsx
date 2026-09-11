@@ -32,9 +32,10 @@ export default function Hero({ openResumeModal }) {
           className="hero-grid"
         >
           {/* Left Text Column */}
-          <div>
-            {/* Availability Badge */}
+          <div className="hero-text-col">
+            {/* Availability Badge (Hidden on Mobile) */}
             <div
+              className="hero-badge"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -65,7 +66,7 @@ export default function Hero({ openResumeModal }) {
 
             {/* Editorial Headline */}
             <h1
-              className="font-serif"
+              className="font-serif hero-headline"
               style={{
                 fontSize: 'clamp(34px, 4.2vw, 52px)',
                 lineHeight: 1.12,
@@ -82,6 +83,7 @@ export default function Hero({ openResumeModal }) {
 
             {/* Body Copy */}
             <p
+              className="hero-copy"
               style={{
                 fontSize: '16.5px',
                 lineHeight: '26px',
@@ -94,30 +96,30 @@ export default function Hero({ openResumeModal }) {
             </p>
 
             {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
+            <div className="hero-ctas" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
               <a
                 href="/Charu_FullStack_Developer_Resume.pdf"
                 download="Charu_FullStack_Developer_Resume.pdf"
-                className="btn-primary"
+                className="btn-primary hero-btn"
                 style={{ textDecoration: 'none', padding: '12px 26px', fontSize: '14.5px' }}
               >
                 <Download size={17} />
                 <span>Download Resume (PDF)</span>
               </a>
 
-              <button onClick={openResumeModal} className="btn-secondary" style={{ padding: '11px 22px', fontSize: '14.5px' }}>
+              <button onClick={openResumeModal} className="btn-secondary hero-btn" style={{ padding: '11px 22px', fontSize: '14.5px' }}>
                 <FileText size={17} />
                 <span>Preview CV Online</span>
               </button>
 
-              <a href="#projects" className="btn-secondary" style={{ border: 'none', textDecoration: 'none', padding: '11px 18px', fontSize: '14.5px' }}>
+              <a href="#projects" className="btn-secondary hero-btn" style={{ border: 'none', textDecoration: 'none', padding: '11px 18px', fontSize: '14.5px' }}>
                 <span>View Projects</span>
                 <ArrowRight size={17} />
               </a>
             </div>
 
             {/* Social Links */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div className="hero-socials" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-subtle)', letterSpacing: '0.5px' }}>
                 Follow Us
               </span>
@@ -184,8 +186,8 @@ export default function Hero({ openResumeModal }) {
             </div>
           </div>
 
-          {/* Right Fluid Frame */}
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+          {/* Right Fluid Frame (Shown FIRST on Mobile View) */}
+          <div className="hero-photo-col" style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
             <div style={{ position: 'relative', width: '100%', maxWidth: '380px' }}>
               <div className="blob-shape-backdrop" />
 
@@ -194,6 +196,7 @@ export default function Hero({ openResumeModal }) {
               </div>
 
               <div
+                className="hero-badge-pill"
                 style={{
                   position: 'absolute',
                   bottom: '-12px',
@@ -240,20 +243,56 @@ export default function Hero({ openResumeModal }) {
             padding-bottom: 30px !important;
           }
         }
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
+          .hero-section {
+            min-height: auto !important;
+            padding-top: 75px !important;
+            padding-bottom: 24px !important;
+          }
+          .hero-badge {
+            display: none !important;
+          }
           .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            display: flex !important;
+            flex-direction: column-reverse !important;
+            gap: 16px !important;
             text-align: center;
           }
-          .hero-grid > div:first-child {
+          .hero-photo-col {
+            width: 100%;
+            margin-bottom: 8px;
+          }
+          .hero-text-col {
             display: flex;
             flex-direction: column;
             align-items: center;
           }
           .blob-shape-frame {
-            height: 340px !important;
-            max-width: 320px !important;
+            height: 210px !important;
+            max-width: 210px !important;
+            margin: 0 auto;
+          }
+          .hero-badge-pill {
+            display: none !important;
+          }
+          .hero-headline {
+            font-size: 26px !important;
+            line-height: 1.15 !important;
+            margin-bottom: 10px !important;
+          }
+          .hero-copy {
+            font-size: 13.5px !important;
+            line-height: 20px !important;
+            margin-bottom: 16px !important;
+          }
+          .hero-ctas {
+            justify-content: center;
+            gap: 10px !important;
+            margin-bottom: 16px !important;
+          }
+          .hero-btn {
+            padding: 10px 18px !important;
+            font-size: 13px !important;
           }
         }
       `}</style>

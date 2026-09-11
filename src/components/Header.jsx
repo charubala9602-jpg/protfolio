@@ -98,11 +98,11 @@ export default function Header({ isDark, toggleTheme, openResumeModal }) {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          {/* Native Direct PDF Download Anchor */}
+          {/* Download CV Button (Hidden on Mobile view as requested) */}
           <a
             href="/Charu_FullStack_Developer_Resume.pdf"
             download="Charu_FullStack_Developer_Resume.pdf"
-            className="btn-primary"
+            className="btn-primary header-cv-btn"
             style={{
               padding: '10px 22px',
               fontSize: '14px',
@@ -181,6 +181,7 @@ export default function Header({ isDark, toggleTheme, openResumeModal }) {
       <style>{`
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
+          .header-cv-btn { display: none !important; }
           .mobile-menu-btn { display: grid !important; }
         }
       `}</style>
